@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "com.grpc_unary.microservice.proto";
+option java_multiple_files = true;
+
+service CrudService {
+  rpc Create (EntityRequest) returns (EntityResponse);
+  rpc Read (EntityIdRequest) returns (EntityResponse);
+  rpc Update (EntityRequest) returns (EntityResponse);
+  rpc Delete (EntityIdRequest) returns (DeleteResponse);
+}
+
+message EntityRequest {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message EntityIdRequest {
+  int64 id = 1;
+}
+
+message EntityResponse {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}
